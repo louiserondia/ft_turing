@@ -1,4 +1,4 @@
 (executable
- (public_name ft_turing)
+ (public_name turing)
  (name main)
- (libraries ft_turing))
+ (libraries turing))
