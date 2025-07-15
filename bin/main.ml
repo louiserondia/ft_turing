@@ -7,14 +7,7 @@ let () =
   let s = String.of_seq (List.to_seq (Turing.Tape.to_list tape)) in
   print_endline s
 
-module StringMap = Map.Make (String)
-
-let m = StringMap.empty
-let m = StringMap.add "coucou" 4 m
-let m = StringMap.add "yo" 45 m
-
 let () =
-  assert (StringMap.find "coucou" m = 4);
   let instructions =
     match Turing.Instructions.from_json_file "yo.json" with
     | Ok e -> e

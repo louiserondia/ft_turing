@@ -33,26 +33,9 @@ type instructions_json = {
 }
 [@@deriving yojson]
 
-let parse_transitions (json : Yojson.Safe.t) :
-    (string * transition_json list) list =
-  match json with
-  | `Assoc state_transitions ->
-      List.map
-        (fun (state, transitions_json) ->
-          let transitions_list = Util.to_list transitions_json in
-          let transitions =
-            List.map
-              (fun json ->
-                match transition_json_of_yojson json with
-                | Ok t -> t
-                | Error msg -> failwith msg)
-              transitions_list
-          in
-          (state, transitions))
-        state_transitions
-  | _ -> assert false
-
 exception SchemaError
+
+let string_to_char s e = match String.length s with 1 -> s.[0] | _ -> raise e
 
 let from_json_file filename : (instructions, string) result =
   try
@@ -64,9 +47,9 @@ let from_json_file filename : (instructions, string) result =
             name = instructions_json.name;
             alphabet =
               List.fold_left
-                (fun acc c -> CharSet.add c.[0] acc)
+                (fun acc s -> CharSet.add (string_to_char s SchemaError) acc)
                 CharSet.empty instructions_json.alphabet;
-            blank = instructions_json.blank.[0];
+            blank = string_to_char instructions_json.blank SchemaError;
             states = to_string_set instructions_json.states;
             initial = instructions_json.initial;
             finals = to_string_set instructions_json.finals;
@@ -81,12 +64,14 @@ let from_json_file filename : (instructions, string) result =
                              let transition =
                                match transition_json_of_yojson transition with
                                | Ok t -> t
-                               | Error _ -> assert false
+                               | Error _ -> raise SchemaError
                              in
-                             CharMap.add transition.read.[0]
+                             CharMap.add
+                               (string_to_char transition.read SchemaError)
                                {
                                  to_state = transition.to_state;
-                                 write = transition.write.[0];
+                                 write =
+                                   string_to_char transition.write SchemaError;
                                  action =
                                    (match transition.action with
                                    | "LEFT" -> Left
@@ -97,7 +82,7 @@ let from_json_file filename : (instructions, string) result =
                            CharMap.empty (Util.to_list transitions))
                         acc)
                     StringMap.empty transitions
-              | _ -> assert false);
+              | _ -> raise SchemaError);
           }
     | Error _ -> raise SchemaError
   with
