@@ -1,10 +1,21 @@
 let () =
+  let filename, input =
+    let help () =
+      print_endline "usage...";
+      exit 0
+    in
+    match Array.sub Sys.argv 1 (Array.length Sys.argv - 1) |> Array.to_list with
+    | [ filename; input ] -> (filename, input)
+    | [ "-h" ] | [ "--help" ] -> help ()
+    | l when List.mem "-h" l || List.mem "--help" l -> help ()
+    | _ -> failwith "wrong number of arguments"
+  in
   let instructions =
-    match Turing.Instructions.from_json_file "programs/unary_add.json" with
+    match Turing.Instructions.from_json_file filename with
     | Ok instructions -> instructions
     | Error msg -> failwith msg
   in
-  let machine = Turing.Machine.init instructions "1111+11=" instructions.initial in
+  let machine = Turing.Machine.init instructions input instructions.initial in
 
   let machine = Turing.Machine.operations machine in
   Turing.Tape.print machine.tape

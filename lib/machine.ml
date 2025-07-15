@@ -7,11 +7,7 @@ type machine = {
 }
 
 let init instructions tape_str op =
-  {
-    instructions;
-    tape = Tape.create (List.of_seq (String.to_seq tape_str));
-    op;
-  }
+  { instructions; tape = Tape.create tape_str; op }
 
 let operation machine =
   let transitions =
@@ -21,8 +17,19 @@ let operation machine =
   let tape = Tape.edit machine.tape transition_rule.write in
   let tape =
     match transition_rule.action with
-    | Left -> Tape.move_left (Tape.add_blank tape Left machine.instructions.blank)
-    | Right -> Tape.move_right (Tape.add_blank tape Right machine.instructions.blank)
+    | Left -> (
+        match tape with
+        | { left = []; _ } -> Tape.add_left tape machine.instructions.blank
+        | _ -> tape)
+    | Right -> (
+        match tape with
+        | { right = []; _ } -> Tape.add_right tape machine.instructions.blank
+        | _ -> tape)
+  in
+  let tape =
+    match transition_rule.action with
+    | Left -> Tape.move_left tape
+    | Right -> Tape.move_right tape
   in
   { instructions = machine.instructions; tape; op = transition_rule.to_state }
 
