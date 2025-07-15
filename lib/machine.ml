@@ -27,6 +27,7 @@ let operation machine =
   { instructions = machine.instructions; tape; op = transition_rule.to_state }
 
 let rec operations machine =
+  (* Tape.print machine.tape; *)
   match StringSet.mem machine.op machine.instructions.finals with
   | true -> machine
   | false -> operations (operation machine)

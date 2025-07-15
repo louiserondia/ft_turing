@@ -1,0 +1,62 @@
+{
+    "name": "02n",
+    "alphabet": [
+        "0",
+        "."
+    ],
+    "blank": ".",
+    "states": [
+        "one",
+        "two",
+        "three",
+        "four"
+    ],
+    "initial": "one",
+    "finals": [
+        "four"
+    ],
+    "transitions": {
+        "one": [
+            {
+                "read": "0",
+                "to_state": "two",
+                "write": ".",
+                "action": "RIGHT"
+            },
+            {
+                "read": ".",
+                "to_state": "three",
+                "write": "y",
+                "action": "RIGHT"
+            }
+        ],
+        "two": [
+            {
+                "read": "0",
+                "to_state": "one",
+                "write": ".",
+                "action": "RIGHT"
+            },
+            {
+                "read": ".",
+                "to_state": "three",
+                "write": "n",
+                "action": "RIGHT"
+            }
+        ],
+        "three": [
+            {
+                "read": "0",
+                "to_state": "three",
+                "write": ".",
+                "action": "RIGHT"
+            },
+            {
+                "read": ".",
+                "to_state": "four",
+                "write": ".",
+                "action": "RIGHT"
+            }
+        ]
+    }
+}

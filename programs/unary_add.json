@@ -9,6 +9,7 @@
     "blank": ".",
     "states": [
         "next",
+        "delete",
         "HALT"
     ],
     "initial": "next",
@@ -32,11 +33,25 @@
             {
                 "read" : "+",
                 "to_state": "next",
-                "write": ".",
+                "write": "1",
                 "action": "RIGHT"
             },
             {
                 "read" : "=",
+                "to_state": "delete",
+                "write": ".",
+                "action": "LEFT"
+            }
+        ],
+        "delete" : [
+            {
+                "read" : ".",
+                "to_state": "delete",
+                "write": ".",
+                "action": "LEFT"
+            },
+            {
+                "read" : "1",
                 "to_state": "HALT",
                 "write": ".",
                 "action": "RIGHT"
