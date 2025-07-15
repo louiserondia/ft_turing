@@ -1,8 +1,4 @@
-open Util
-
 type tape = { left : char list; right : char list; v : char }
-
-let init v = { left = []; right = []; v }
 
 let move_left tape =
   match tape.left with
@@ -39,20 +35,15 @@ let to_list tape = (tape.left |> List.rev) @ [ tape.v ] @ tape.right
 let to_string tape = String.of_seq (List.to_seq (to_list tape))
 let print tape = print_endline (to_string tape)
 
-let add_blank tape dir blank =
-  match (tape, dir) with
-  | { left = []; _ }, Left -> add_left tape blank
-  | { right = []; _ }, Right -> add_right tape blank
-  | _ -> tape
-
 let create str =
-  match str with
+  let l = str |> String.to_seq |> List.of_seq in
+  match l with
   | [] -> assert false
-  | str_hd :: str_tl ->
-      let tape = init str_hd in
+  | l_hd :: l_tl ->
+      let tape = { left = []; v = l_hd; right = [] } in
       let rec add_letters tape s =
         match s with
         | [] -> move_max_left tape
         | hd :: tl -> add_letters (move_right (add_right tape hd)) tl
       in
-      add_letters tape str_tl
+      add_letters tape l_tl
