@@ -52,53 +52,55 @@ let parse_transitions (json : Yojson.Safe.t) :
         state_transitions
   | _ -> assert false
 
-let from_json_file filename : instructions =
-  let json = from_file filename in
-  match instructions_json_of_yojson json with
-  | Ok instructions_json ->
-      {
-        name = instructions_json.name;
-        alphabet =
-          List.fold_left
-            (fun acc c -> CharSet.add c.[0] acc)
-            CharSet.empty instructions_json.alphabet;
-        blank = instructions_json.blank.[0];
-        states =
-          List.fold_left
-            (fun acc s -> StringSet.add s acc)
-            StringSet.empty instructions_json.states;
-        initial = instructions_json.initial;
-        finals =
-          List.fold_left
-            (fun acc s -> StringSet.add s acc)
-            StringSet.empty instructions_json.finals;
-        transitions =
-          (match instructions_json.transitions with
-          | `Assoc transitions ->
+exception SchemaError
+
+let from_json_file filename : (instructions, string) result =
+  try
+    let json = from_file filename in
+    match instructions_json_of_yojson json with
+    | Ok instructions_json ->
+        Ok
+          {
+            name = instructions_json.name;
+            alphabet =
               List.fold_left
-                (fun acc (name, transitions) ->
-                  StringMap.add name
-                    (List.fold_left
-                       (fun acc transition ->
-                         let transition =
-                           match transition_json_of_yojson transition with
-                           | Ok t -> t
-                           | Error _ -> assert false
-                         in
-                         CharMap.add transition.read.[0]
-                           {
-                             to_state = transition.to_state;
-                             write = transition.write.[0];
-                             action =
-                               (match transition.action with
-                               | "LEFT" -> Left
-                               | "RIGHT" -> Right
-                               | _ -> assert false);
-                           }
-                           acc)
-                       CharMap.empty (Util.to_list transitions))
-                    acc)
-                StringMap.empty transitions
-          | _ -> assert false);
-      }
-  | Error _ -> assert false
+                (fun acc c -> CharSet.add c.[0] acc)
+                CharSet.empty instructions_json.alphabet;
+            blank = instructions_json.blank.[0];
+            states = to_string_set instructions_json.states;
+            initial = instructions_json.initial;
+            finals = to_string_set instructions_json.finals;
+            transitions =
+              (match instructions_json.transitions with
+              | `Assoc transitions ->
+                  List.fold_left
+                    (fun acc (name, transitions) ->
+                      StringMap.add name
+                        (List.fold_left
+                           (fun acc transition ->
+                             let transition =
+                               match transition_json_of_yojson transition with
+                               | Ok t -> t
+                               | Error _ -> assert false
+                             in
+                             CharMap.add transition.read.[0]
+                               {
+                                 to_state = transition.to_state;
+                                 write = transition.write.[0];
+                                 action =
+                                   (match transition.action with
+                                   | "LEFT" -> Left
+                                   | "RIGHT" -> Right
+                                   | _ -> raise SchemaError);
+                               }
+                               acc)
+                           CharMap.empty (Util.to_list transitions))
+                        acc)
+                    StringMap.empty transitions
+              | _ -> assert false);
+          }
+    | Error _ -> raise SchemaError
+  with
+  | Yojson.Json_error _ -> Error "invalid JSON"
+  | Sys_error msg -> Error msg
+  | SchemaError -> Error "invalid schema/logic"

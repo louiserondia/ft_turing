@@ -15,7 +15,11 @@ let m = StringMap.add "yo" 45 m
 
 let () =
   assert (StringMap.find "coucou" m = 4);
-  let instructions = Turing.Instructions.from_json_file "yo.json" in
+  let instructions =
+    match Turing.Instructions.from_json_file "yo.json" with
+    | Ok e -> e
+    | Error msg -> failwith msg
+  in
   let yo =
     Turing.Util.CharMap.find '='
       (Turing.Util.StringMap.find "scanright" instructions.transitions)
