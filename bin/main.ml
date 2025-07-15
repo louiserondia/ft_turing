@@ -1,20 +1,10 @@
 let () =
-  let tape = Turing.Tape.init '.' in
-  let tape = Turing.Tape.add_right tape 'y' in
-  let tape = Turing.Tape.move_right tape in
-  let tape = Turing.Tape.add_right tape 'o' in
-  let tape = Turing.Tape.move_max_left tape in
-  let s = String.of_seq (List.to_seq (Turing.Tape.to_list tape)) in
-  print_endline s
-
-let () =
   let instructions =
-    match Turing.Instructions.from_json_file "yo.json" with
-    | Ok e -> e
+    match Turing.Instructions.from_json_file "programs/unary_add.json" with
+    | Ok instructions -> instructions
     | Error msg -> failwith msg
   in
-  let yo =
-    Turing.Util.CharMap.find '='
-      (Turing.Util.StringMap.find "scanright" instructions.transitions)
-  in
-  print_endline yo.to_state
+  let machine = Turing.Machine.init instructions "1111+11=" instructions.initial in
+
+  let machine = Turing.Machine.operations machine in
+  Turing.Tape.print machine.tape

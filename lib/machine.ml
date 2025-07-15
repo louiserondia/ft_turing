@@ -6,17 +6,27 @@ type machine = {
   op : string;
 }
 
-let init instructions tape op = { instructions; tape; op }
+let init instructions tape_str op =
+  {
+    instructions;
+    tape = Tape.create (List.of_seq (String.to_seq tape_str));
+    op;
+  }
 
-let operation machine (tape : Tape.tape) =
+let operation machine =
   let transitions =
     StringMap.find machine.op machine.instructions.transitions
   in
-  let transition_rule = CharMap.find tape.v transitions in
-  let tape = Tape.edit tape transition_rule.write in
+  let transition_rule = CharMap.find machine.tape.v transitions in
+  let tape = Tape.edit machine.tape transition_rule.write in
   let tape =
     match transition_rule.action with
-    | Left -> Tape.move_left tape
-    | Right -> Tape.move_right tape
+    | Left -> Tape.move_left (Tape.add_blank tape Left machine.instructions.blank)
+    | Right -> Tape.move_right (Tape.add_blank tape Right machine.instructions.blank)
   in
   { instructions = machine.instructions; tape; op = transition_rule.to_state }
+
+let rec operations machine =
+  match StringSet.mem machine.op machine.instructions.finals with
+  | true -> machine
+  | false -> operations (operation machine)

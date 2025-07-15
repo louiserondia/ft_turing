@@ -1,4 +1,5 @@
 open Util
+open Yojson.Safe
 
 type transition_rule = { to_state : string; write : char; action : action }
 
@@ -11,8 +12,6 @@ type instructions = {
   finals : StringSet.t;
   transitions : transition_rule CharMap.t StringMap.t;
 }
-
-open Yojson.Safe
 
 type transition_json = {
   read : string;
