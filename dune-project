@@ -19,7 +19,7 @@
  (name ft_turing)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml)
+ (depends ocaml dune yojson ppx_deriving_yojson)
  (tags
   ("add topics" "to describe" your project)))
 

@@ -1,2 +1,6 @@
 (library
- (name turing))
+ (name turing)
+ (libraries yojson)
+ (modules tape machine instructions util)
+ (preprocess
+  (pps ppx_deriving_yojson)))
