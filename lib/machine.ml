@@ -9,6 +9,10 @@ type machine = {
 let init instructions tape_str op =
   { instructions; tape = Tape.create tape_str instructions.blank; op }
 
+let transition_to_string s c (rule : Instructions.transition_rule) =
+  Format.sprintf "(%s, %c) -> (%s, %c, %s)" s c rule.to_state rule.write
+    (match rule.action with Left -> "LEFT" | Right -> "RIGHT")
+
 let print_info machine =
   Printf.printf "name: %s\n" machine.instructions.name;
   let s =
@@ -26,13 +30,26 @@ let print_info machine =
     Util.list_to_string (StringSet.to_list machine.instructions.finals)
       (fun s -> s)
   in
-  Printf.printf "finals: %s\n" s
+  Printf.printf "finals: %s\n" s;
+  StringMap.iter
+    (fun s ->
+      fun m ->
+       CharMap.iter
+         (fun c ->
+           fun (rule : Instructions.transition_rule) ->
+            transition_to_string s c rule |> print_endline)
+         m)
+    machine.instructions.transitions
 
 let operation machine =
   let transitions =
     StringMap.find machine.op machine.instructions.transitions
   in
   let transition_rule = CharMap.find machine.tape.v transitions in
+  (machine.tape |> Tape.to_string)
+  ^ "\t"
+  ^ transition_to_string machine.op machine.tape.v transition_rule
+  |> print_endline;
   let tape = Tape.edit machine.tape transition_rule.write in
   let tape =
     match transition_rule.action with
@@ -42,7 +59,6 @@ let operation machine =
   { instructions = machine.instructions; tape; op = transition_rule.to_state }
 
 let rec operations machine =
-  machine.tape |> Tape.to_string |> print_endline;
   match StringSet.mem machine.op machine.instructions.finals with
   | true -> machine
   | false -> operations (operation machine)

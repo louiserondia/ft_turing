@@ -17,5 +17,6 @@ let () =
   in
   let machine = Turing.Machine.init instructions input instructions.initial in
   Turing.Machine.print_info machine;
+  String.make 50 '*' |> print_endline;
   let machine = Turing.Machine.operations machine in
   Turing.Tape.to_string machine.tape |> print_endline
