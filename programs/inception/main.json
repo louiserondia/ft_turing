@@ -73,7 +73,7 @@
         "init": [
             {
                 "read": "%",
-                "to_state": "find_A1%t",
+                "to_state": "find_A+%t",
                 "write": "%",
                 "action": "RIGHT"
             }
