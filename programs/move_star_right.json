@@ -1,0 +1,63 @@
+{
+  "name": "move_star_left",
+  "alphabet": [
+    "$",
+    "%",
+    "t",
+    "s",
+    "a",
+    "w",
+    "d",
+    "A",
+    "B",
+    "C",
+    "b",
+    "c",
+    "1",
+    "l",
+    "r",
+    "+",
+    "=",
+    ".",
+    "#",
+    "*",
+    "@",
+    "i"
+  ],
+  "blank": ".",
+  "states": [],
+  "initial": "goto_*_then_move_it_right",
+  "finals": ["end"],
+  "transitions": {
+    "goto_*_then_move_it_right": [
+      {
+        "read": "#$%+.1=@ABCabcdlrstwi",
+        "to_state": "goto_*_then_move_it_right",
+        "write": "[r]",
+        "action": "RIGHT"
+      },
+      {
+        "read": "*",
+        "to_state": "read_then_write_value_left",
+        "write": "*",
+        "action": "RIGHT"
+      }
+    ],
+    "read_then_write_value_left": [
+      {
+        "read": "1+=.",
+        "to_state": "write_[r]",
+        "write": "*",
+        "action": "LEFT"
+      }
+    ],
+    "write_[a]": [
+      {
+        "read": "*",
+        "to_state": "end",
+        "write": "[a]",
+        "action": "RIGHT"
+      }
+    ]
+  }
+}
