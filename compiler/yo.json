@@ -24,20 +24,20 @@
     "@"
   ],
   "blank": ".",
-  "states": ["goto_#", "end"],
-  "initial": "goto_#",
+  "states": ["action_A1_comp_s_go_to_input", "end"],
+  "initial": "action_A1_comp_s_go_to_input",
   "finals": ["end"],
   "transitions": {
-    "goto_A": [
+    "save_A1_find_A1%w_A": [
       {
-        "read": "$%tsawd@BCabc1lr+=.#*",
-        "to_state": "goto_A",
+        "read": "$%tsawd*BCabc1lr+=.#@",
+        "to_state": "save_A1_find_A1%d_A",
         "write": "[r]",
         "action": "RIGHT"
       },
       {
         "read": "A",
-        "to_state": "write_A",
+        "to_state": "save_A1_find_A1%d_1",
         "write": "A",
         "action": "RIGHT"
       }
