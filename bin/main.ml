@@ -16,6 +16,6 @@ let () =
     | Error msg -> failwith msg
   in
   let machine = Turing.Machine.init instructions input instructions.initial in
-
+  Turing.Machine.print_info machine;
   let machine = Turing.Machine.operations machine in
-  Turing.Tape.print machine.tape
+  Turing.Tape.to_string machine.tape |> print_endline

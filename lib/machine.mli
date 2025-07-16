@@ -5,5 +5,6 @@ type machine = {
 }
 
 val init : Instructions.instructions -> string -> string -> machine
+val print_info : machine -> unit
 val operation : machine -> machine
 val operations : machine -> machine
