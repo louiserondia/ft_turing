@@ -1,0 +1,69 @@
+{
+  "name": "move_right",
+  "alphabet": [
+    "$",
+    "%",
+    "t",
+    "s",
+    "a",
+    "w",
+    "d",
+    "A",
+    "B",
+    "C",
+    "b",
+    "c",
+    "1",
+    "l",
+    "r",
+    "+",
+    "=",
+    ".",
+    "#",
+    "*",
+    "@"
+  ],
+  "blank": ".",
+  "states": ["goto_#", "end"],
+  "initial": "goto_#",
+  "finals": ["end"],
+  "transitions": {
+    "goto_#": [
+      {
+        "read": "$%tsawdABCabc1lr+=.#*",
+        "to_state": "goto_#",
+        "write": "[r]",
+        "action": "RIGHT"
+      },
+      {
+        "read": "@",
+        "to_state": "write_@",
+        "write": ".",
+        "action": "RIGHT"
+      }
+    ],
+    "write_@": [
+      {
+        "read": ".",
+        "to_state": "loop_1",
+        "write": "@",
+        "action": "LEFT"
+      }
+    ],
+    "loop_1": [
+      { "read": ".", "to_state": "loop_2", "write": ".", "action": "LEFT" }
+    ],
+    "loop_2": [
+      {
+        "read": "=1+.*",
+        "to_state": "write_[r]",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      { "read": "#", "to_state": "end", "write": "#", "action": "LEFT" }
+    ],
+    "write_[a]_to_happiness_[b]": [
+      { "read": ".", "to_state": "loop_[b]", "write": "[a]", "action": "LEFT" }
+    ]
+  }
+}

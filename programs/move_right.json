@@ -1,0 +1,178 @@
+{
+  "name": "move_right",
+  "alphabet": [],
+  "blank": ".",
+  "states": ["goto_#", "end"],
+  "initial": "goto_#",
+  "finals": ["end"],
+  "transitions": {
+    "goto_#": [
+      {
+        "read": "$",
+        "to_state": "goto_#",
+        "write": "$",
+        "action": "RIGHT"
+      },
+      {
+        "read": "%",
+        "to_state": "goto_#",
+        "write": "%",
+        "action": "RIGHT"
+      },
+      {
+        "read": "t",
+        "to_state": "goto_#",
+        "write": "t",
+        "action": "RIGHT"
+      },
+      {
+        "read": "s",
+        "to_state": "goto_#",
+        "write": "s",
+        "action": "RIGHT"
+      },
+      {
+        "read": "a",
+        "to_state": "goto_#",
+        "write": "a",
+        "action": "RIGHT"
+      },
+      {
+        "read": "w",
+        "to_state": "goto_#",
+        "write": "w",
+        "action": "RIGHT"
+      },
+      {
+        "read": "d",
+        "to_state": "goto_#",
+        "write": "d",
+        "action": "RIGHT"
+      },
+      {
+        "read": "A",
+        "to_state": "goto_#",
+        "write": "A",
+        "action": "RIGHT"
+      },
+      {
+        "read": "B",
+        "to_state": "goto_#",
+        "write": "B",
+        "action": "RIGHT"
+      },
+      {
+        "read": "C",
+        "to_state": "goto_#",
+        "write": "C",
+        "action": "RIGHT"
+      },
+      {
+        "read": "a",
+        "to_state": "goto_#",
+        "write": "a",
+        "action": "RIGHT"
+      },
+      {
+        "read": "b",
+        "to_state": "goto_#",
+        "write": "b",
+        "action": "RIGHT"
+      },
+      {
+        "read": "c",
+        "to_state": "goto_#",
+        "write": "c",
+        "action": "RIGHT"
+      },
+      {
+        "read": "1",
+        "to_state": "goto_#",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "l",
+        "to_state": "goto_#",
+        "write": "l",
+        "action": "RIGHT"
+      },
+      {
+        "read": "r",
+        "to_state": "goto_#",
+        "write": "r",
+        "action": "RIGHT"
+      },
+      {
+        "read": "+",
+        "to_state": "goto_#",
+        "write": "+",
+        "action": "RIGHT"
+      },
+      {
+        "read": "=",
+        "to_state": "goto_#",
+        "write": "=",
+        "action": "RIGHT"
+      },
+      {
+        "read": ".",
+        "to_state": "goto_#",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "#",
+        "to_state": "goto_#",
+        "write": "#",
+        "action": "RIGHT"
+      },
+      {
+        "read": "*",
+        "to_state": "goto_#",
+        "write": "*",
+        "action": "RIGHT"
+      },
+      {
+        "read": "@",
+        "to_state": "write_@",
+        "write": ".",
+        "action": "RIGHT"
+      }
+    ],
+    "write_@": [
+      {
+        "read": ".",
+        "to_state": "loop_1",
+        "write": "@",
+        "action": "LEFT"
+      }
+    ],
+    "loop_1": [
+      { "read": ".", "to_state": "loop_2", "write": ".", "action": "LEFT" }
+    ],
+    "loop_2": [
+        { "read": "=", "to_state": "write_=", "write": ".", "action": "RIGHT" },
+        { "read": "1", "to_state": "write_1", "write": ".", "action": "RIGHT" },
+        { "read": "+", "to_state": "write_+", "write": ".", "action": "RIGHT" },
+        { "read": ".", "to_state": "write_.", "write": ".", "action": "RIGHT" },
+        { "read": "*", "to_state": "write_*", "write": ".", "action": "RIGHT" },
+        { "read": "#", "to_state": "end", "write": "#", "action": "LEFT" }
+    ],
+    "write_=": [
+      { "read": ".", "to_state": "loop_1", "write": "=", "action": "LEFT" }
+    ],
+    "write_1": [
+      { "read": ".", "to_state": "loop_1", "write": "1", "action": "LEFT" }
+    ],
+    "write_+": [
+      { "read": ".", "to_state": "loop_1", "write": "+", "action": "LEFT" }
+    ],
+    "write_.": [
+      { "read": ".", "to_state": "loop_1", "write": ".", "action": "LEFT" }
+    ],
+    "write_*": [
+      { "read": ".", "to_state": "loop_1", "write": "*", "action": "LEFT" }
+    ]
+  }
+}
