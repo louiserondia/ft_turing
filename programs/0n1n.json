@@ -1,0 +1,147 @@
+{
+    "name": "0n1n",
+    "alphabet": ["0", "1", "."],
+    "blank": ".",
+    "states": [
+        "find",
+        "to_end",
+        "delete",
+        "to_start",
+        "no_way",
+        "end"
+    ],
+    "initial": "find",
+    "finals": [ "end" ],
+    "transitions": {
+        "find": [
+            {
+                "read" : "-",
+                "to_state": "find",
+                "write": "-",
+                "action": "RIGHT"
+            },
+            {
+                "read" : "0",
+                "to_state": "to_end",
+                "write": "-",
+                "action": "RIGHT"
+            },
+            {
+                "read" : ".",
+                "to_state": "end",
+                "write": "y",
+                "action": "RIGHT"
+            },
+            {
+                "read" : "1",
+                "to_state": "no_way",
+                "write": ".",
+                "action": "RIGHT"
+            }
+        ],
+        "to_end": [
+            {
+                "read" : "0",
+                "to_state": "to_end",
+                "write": "0",
+                "action": "RIGHT"
+            },
+            {
+                "read" : "1",
+                "to_state": "to_end",
+                "write": "1",
+                "action": "RIGHT"
+            },
+            {
+                "read" : "-",
+                "to_state": "to_end",
+                "write": "-",
+                "action": "RIGHT"
+            },
+            {
+                "read" : ".",
+                "to_state": "delete",
+                "write": ".",
+                "action": "LEFT"
+            }
+        ],
+        "delete": [
+            {
+                "read" : "-",
+                "to_state": "delete",
+                "write": "-",
+                "action": "LEFT"
+            },
+            {
+                "read" : "0",
+                "to_state": "no_way",
+                "write": ".",
+                "action": "RIGHT"
+            },
+            {
+                "read" : ".",
+                "to_state": "no_way",
+                "write": ".",
+                "action": "RIGHT"
+            },
+            {
+                "read" : "1",
+                "to_state": "to_start",
+                "write": "-",
+                "action": "LEFT"
+            }
+        ],
+         "to_start": [
+            {
+                "read" : "0",
+                "to_state": "to_start",
+                "write": "0",
+                "action": "LEFT"
+            },
+            {
+                "read" : "1",
+                "to_state": "to_start",
+                "write": "1",
+                "action": "LEFT"
+            },
+            {
+                "read" : "-",
+                "to_state": "to_start",
+                "write": "-",
+                "action": "LEFT"
+            },
+            {
+                "read" : ".",
+                "to_state": "find",
+                "write": ".",
+                "action": "RIGHT"
+            }
+        ],
+        "no_way": [
+            {
+                "read" : "1",
+                "to_state": "no_way",
+                "write": ".",
+                "action": "RIGHT"
+            },
+            {
+                "read" : "0",
+                "to_state": "no_way",
+                "write": ".",
+                "action": "RIGHT"
+            },
+            {
+                "read" : "-",
+                "to_state": "no_way",
+                "write": ".",
+                "action": "RIGHT"
+            },
+            {
+                "read" : ".",
+                "to_state": "end",
+                "write": "n",
+                "action": "RIGHT"
+            }
+        ]
+    }
+}
