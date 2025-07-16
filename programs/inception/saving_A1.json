@@ -7,6 +7,18 @@
             "action": "RIGHT"
         },
         {
+            "read": "+",
+            "to_state": "find_A1%t",
+            "write": "+",
+            "action": "RIGHT"
+        },
+        {
+            "read": "=",
+            "to_state": "find_A1%t",
+            "write": "=",
+            "action": "RIGHT"
+        },
+        {
             "read": "%",
             "to_state": "find_A1%t",
             "write": "%",
@@ -81,12 +93,6 @@
             "action": "RIGHT"
         },
         {
-            "read": "a",
-            "to_state": "find_A1%t_A",
-            "write": "a",
-            "action": "RIGHT"
-        },
-        {
             "read": "w",
             "to_state": "find_A1%t_A",
             "write": "w",
@@ -153,18 +159,6 @@
             "action": "RIGHT"
         },
         {
-            "read": "+",
-            "to_state": "find_A1%t_A",
-            "write": "+",
-            "action": "RIGHT"
-        },
-        {
-            "read": "=",
-            "to_state": "find_A1%t_A",
-            "write": "=",
-            "action": "RIGHT"
-        },
-        {
             "read": ".",
             "to_state": "find_A1%t_A",
             "write": ".",
@@ -174,6 +168,18 @@
             "read": "#",
             "to_state": "find_A1%t_A",
             "write": "#",
+            "action": "RIGHT"
+        },
+        {
+            "read": "+",
+            "to_state": "find_A1%t_A",
+            "write": "+",
+            "action": "RIGHT"
+        },
+        {
+            "read": "=",
+            "to_state": "find_A1%t_A",
+            "write": "=",
             "action": "RIGHT"
         },
         {
