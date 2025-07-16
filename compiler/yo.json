@@ -24,21 +24,40 @@
     "@"
   ],
   "blank": ".",
-  "states": ["action_A1_comp_s_go_to_input", "end"],
+  "states": [
+    "action_A1_comp_s_go_to_input",
+    "end"
+  ],
   "initial": "action_A1_comp_s_go_to_input",
-  "finals": ["end"],
+  "finals": [
+    "end"
+  ],
   "transitions": {
-    "save_A1_find_A1%w_A": [
+    "find_cmd_from_A+": [
       {
-        "read": "$%tsawd*BCabc1lr+=.#@",
-        "to_state": "save_A1_find_A1%d_A",
+        "read": "%*sABCwabcdi1lrt+=.#@",
+        "to_state": "find_cmd_from_A+",
         "write": "[r]",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
-        "read": "A",
-        "to_state": "save_A1_find_A1%d_1",
-        "write": "A",
+        "read": "$",
+        "to_state": "find_A=%t",
+        "write": "$",
+        "action": "RIGHT"
+      }
+    ],
+    "find_cmd_from_A=": [
+      {
+        "read": "%*sABCwabcdi1lrt+=.#@",
+        "to_state": "find_cmd_from_A=",
+        "write": "[r]",
+        "action": "LEFT"
+      },
+      {
+        "read": "$",
+        "to_state": "find_A1%t",
+        "write": "$",
         "action": "RIGHT"
       }
     ]
