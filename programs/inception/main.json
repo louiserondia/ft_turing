@@ -1,0 +1,82 @@
+{
+    "name": "inception",
+    "alphabet": [
+        ".",
+        "%",
+        "$",
+        "@",
+        "a",
+        "b",
+        "c",
+        "d",
+        "i",
+        "l",
+        "r",
+        "s",
+        "t",
+        "w",
+        "A",
+        "B",
+        "1",
+        "+",
+        "="
+    ],
+    "blank": ".",
+    "states": [
+        "init",
+        "find_A1",
+        "find_A1_A",
+        "find_A1_1",
+        "find_A1%t",
+        "find_A1%t_A",
+        "find_A1%t_1",
+        "save_A1%t_go_to_%t",
+        "save_A1_%t",
+        "save_A1_%s",
+        "save_A1_find_A1%a",
+        "save_A1_find_A1%a_A",
+        "save_A1_find_A1%a_1",
+        "save_A1_get_A1%a",
+        "save_A1_%a=a_go_to_%i",
+        "save_A1_%a=b_go_to_%i",
+        "save_A1_%a=a",
+        "save_A1_%a=b",
+        "save_A1_find_A1%w",
+        "save_A1_find_A1%w_A",
+        "save_A1_find_A1%w_1",
+        "save_A1_get_A1%w_at_%a",
+        "save_A1_get_A1%w_at_%w",
+        "save_A1_%w=1_go_to_%w",
+        "save_A1_%w=+_go_to_b",
+        "save_A1_%w==_go_to_b",
+        "save_A1_%w=._go_to_b",
+        "save_A1_%w=1",
+        "save_A1_%w=+",
+        "save_A1_%w==",
+        "save_A1_%w=.",
+        "save_A1_find_A1%d",
+        "save_A1_find_A1%d_A",
+        "save_A1_find_A1%d_1",
+        "save_A1_get_A1%d_at_%a",
+        "save_A1_get_A1%d_at_%w",
+        "save_A1_get_A1%d_at_%d",
+        "save_A1_%d=r_go_to_%d",
+        "save_A1_%d=l_go_to_%d",
+        "save_A1_%d=r",
+        "save_A1_%d=l"
+    ],
+    "initial": "init",
+    "finals": [
+        "stop"
+    ],
+    "transitions": {
+        "init": [
+            {
+                "read": "%",
+                "to_state": "find_A1%t",
+                "write": "%",
+                "action": "RIGHT"
+            }
+        ]
+    }
+}

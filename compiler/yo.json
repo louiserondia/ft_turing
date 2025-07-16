@@ -28,42 +28,19 @@
   "initial": "goto_#",
   "finals": ["end"],
   "transitions": {
-    "goto_#": [
+    "goto_A": [
       {
-        "read": "$%tsawdABCabc1lr+=.#*",
-        "to_state": "goto_#",
+        "read": "$%tsawd@BCabc1lr+=.#*",
+        "to_state": "goto_A",
         "write": "[r]",
         "action": "RIGHT"
       },
       {
-        "read": "@",
-        "to_state": "write_@",
-        "write": ".",
+        "read": "A",
+        "to_state": "write_A",
+        "write": "A",
         "action": "RIGHT"
       }
-    ],
-    "write_@": [
-      {
-        "read": ".",
-        "to_state": "loop_1",
-        "write": "@",
-        "action": "LEFT"
-      }
-    ],
-    "loop_1": [
-      { "read": ".", "to_state": "loop_2", "write": ".", "action": "LEFT" }
-    ],
-    "loop_2": [
-      {
-        "read": "=1+.*",
-        "to_state": "write_[r]",
-        "write": ".",
-        "action": "RIGHT"
-      },
-      { "read": "#", "to_state": "end", "write": "#", "action": "LEFT" }
-    ],
-    "write_[a]_to_happiness_[b]": [
-      { "read": ".", "to_state": "loop_[b]", "write": "[a]", "action": "LEFT" }
     ]
   }
 }

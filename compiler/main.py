@@ -36,6 +36,8 @@ def step2():
                 o["write"] = o["write"].replace(placeholder, c)
         del transitions[k]
 
+step1()
+
 for _ in range(10):
     step2()
 
