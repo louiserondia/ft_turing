@@ -33,15 +33,40 @@ type instructions_json = {
 [@@deriving yojson]
 
 exception SchemaError
+exception LogicError
 
 let string_to_char s e = match String.length s with 1 -> s.[0] | _ -> raise e
 
+let check_instructions (instructions : instructions) =
+  let in_alphabet c = CharSet.mem c instructions.alphabet in
+  let in_states s = StringSet.mem s instructions.states in
+  if not (in_alphabet instructions.blank) then raise LogicError;
+  if not (in_states instructions.initial) then raise LogicError;
+  if StringSet.exists (fun s -> not (in_states s)) instructions.finals then
+    raise LogicError;
+  let check_transition (transition : transition_rule) =
+    if not (in_states transition.to_state) then raise LogicError;
+    if not (in_alphabet transition.write) then raise LogicError
+  in
+  StringMap.iter
+    (fun k ->
+      fun v ->
+       if not (in_states k) then raise LogicError
+       else
+         CharMap.iter
+           (fun c ->
+             fun transition ->
+              if not (in_alphabet c) then raise LogicError;
+              check_transition transition)
+           v)
+    instructions.transitions
+
 let from_json_file filename : (instructions, string) result =
   try
-    let json = from_file filename in
-    match instructions_json_of_yojson json with
-    | Ok instructions_json ->
-        Ok
+    let instructions : instructions =
+      let json = from_file filename in
+      match instructions_json_of_yojson json with
+      | Ok instructions_json ->
           {
             name = instructions_json.name;
             alphabet =
@@ -83,8 +108,12 @@ let from_json_file filename : (instructions, string) result =
                     StringMap.empty transitions
               | _ -> raise SchemaError);
           }
-    | Error _ -> raise SchemaError
+      | Error _ -> raise SchemaError
+    in
+    (* check_instructions instructions; *)
+    let _ = check_instructions in
+    Ok instructions
   with
   | Yojson.Json_error _ -> Error "invalid JSON"
   | Sys_error msg -> Error msg
-  | SchemaError -> Error "invalid schema/logic"
+  | SchemaError | LogicError -> Error "invalid schema/logic"

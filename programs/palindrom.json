@@ -12,6 +12,7 @@
         "find_letter",
         "to_start",
         "end_b",
+        "end_o",
         "erase_b",
         "erase_o",
         "yes",
