@@ -6,8 +6,18 @@ type machine = {
   op : string;
 }
 
+exception InvalidInput
+
+let check_tape_str s (instructions : Instructions.instructions) =
+  if String.exists (fun c -> not (CharSet.mem c instructions.alphabet)) s then
+    raise InvalidInput;
+  if String.contains s instructions.blank then raise InvalidInput
+
 let init instructions tape_str op =
-  { instructions; tape = Tape.create tape_str instructions.blank; op }
+  try
+    check_tape_str tape_str instructions;
+    Ok { instructions; tape = Tape.create tape_str instructions.blank; op }
+  with InvalidInput -> Error "invalid input"
 
 let transition_to_string s c (rule : Instructions.transition_rule) =
   Format.sprintf "(%s, %c) -> (%s, %c, %s)" s c rule.to_state rule.write

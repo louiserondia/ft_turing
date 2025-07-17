@@ -27,7 +27,13 @@ let () =
         Printf.eprintf "%s\n" msg;
         exit 1
   in
-  let machine = Turing.Machine.init instructions input instructions.initial in
+  let machine =
+    match Turing.Machine.init instructions input instructions.initial with
+    | Ok v -> v
+    | Error msg ->
+        Printf.eprintf "%s\n" msg;
+        exit 1
+  in
   Turing.Machine.print_info machine;
   String.make 50 '*' |> print_endline;
   let machine = Turing.Machine.operations machine in
