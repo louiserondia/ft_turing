@@ -2,10 +2,7 @@ import os
 from pathlib import Path
 import json
 
-# Obtenir le chemin du dossier où se trouve ce script
-script_dir = Path(__file__).parent
-
-l = [json.loads(open(file).read()) for file in script_dir.iterdir() if file.is_file() and file.name.endswith(".json")]
+l = [json.loads(open(file).read()) for file in Path(__file__).parent.iterdir() if file.is_file() and file.name.endswith(".json")]
 
 main = next(data for data in l if "name" in data)
 
@@ -24,5 +21,3 @@ for k in main["transitions"].keys():
 res.append("end")
 
 print(json.dumps(sorted(res)))
-
-# Parcourir tous les fichiers dans ce dossier
