@@ -53,7 +53,7 @@ let print_info machine =
 
 let operation machine =
   let stuck_message =
-    "the machine is stuck because of invalid input or problem in states logic"
+    "the machine is stuck by a problem in states logic"
   in
   let transitions =
     match StringMap.find_opt machine.op machine.instructions.transitions with
