@@ -42,18 +42,21 @@ let print_info machine =
     machine.instructions.transitions
 
 let operation machine =
+  let stuck_message =
+    "the machine is stuck because of invalid input or problem in states logic"
+  in
   let transitions =
     match StringMap.find_opt machine.op machine.instructions.transitions with
     | Some v -> v
     | None ->
-        Printf.eprintf "the machine is stuck\n";
+        Printf.eprintf "%s\n" stuck_message;
         exit 1
   in
   let transition_rule =
     match CharMap.find_opt machine.tape.v transitions with
     | Some v -> v
     | None ->
-        Printf.eprintf "the machine is stuck\n";
+        Printf.eprintf "%s\n" stuck_message;
         exit 1
   in
   (machine.tape |> Tape.to_string)

@@ -24,7 +24,7 @@
         "#",
         "*"
     ],
-    "blank": ".",
+    "blank": "@",
     "states": [
         "save_A+_%w=+_go_to_%w",
         "save_A+_%w=._go_to_%w",
