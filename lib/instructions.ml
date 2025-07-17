@@ -38,7 +38,12 @@ exception LogicError
 let string_to_char s e = match String.length s with 1 -> s.[0] | _ -> raise e
 
 let check_instructions (instructions : instructions) =
-  let in_alphabet c = if  CharSet.mem c instructions.alphabet then true else (Printf.printf "%c\n" c; false) in
+  let in_alphabet c =
+    if CharSet.mem c instructions.alphabet then true
+    else (
+      Printf.printf "%c\n" c;
+      false)
+  in
   let in_states s = StringSet.mem s instructions.states in
   if not (in_alphabet instructions.blank) then raise LogicError;
   if not (in_states instructions.initial) then raise LogicError;
@@ -55,10 +60,9 @@ let check_instructions (instructions : instructions) =
        else
          CharMap.iter
            (fun c ->
-             fun transition -> 
-              if (not (in_alphabet c)) && false then raise LogicError;
-              check_transition transition
-              )
+             fun transition ->
+              if not (in_alphabet c) then raise LogicError;
+              check_transition transition)
            v)
     instructions.transitions
 
@@ -111,8 +115,7 @@ let from_json_file filename : (instructions, string) result =
           }
       | Error _ -> raise SchemaError
     in
-    (* check_instructions instructions; *)
-    let _ = check_instructions in
+    check_instructions instructions;
     Ok instructions
   with
   | Yojson.Json_error _ -> Error "invalid JSON"
