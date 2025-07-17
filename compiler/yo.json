@@ -33,32 +33,18 @@
     "end"
   ],
   "transitions": {
-    "find_cmd_from_A+": [
+    "save_B1_find_B1%w_1": [
       {
-        "read": "%*sABCwabcdi1lrt+=.#@",
-        "to_state": "find_cmd_from_A+",
+        "read": "%$*sABCwabcdilrt+.#@=",
+        "to_state": "save_B1_find_B1%w_1",
         "write": "[r]",
-        "action": "LEFT"
+        "action": "RIGHT"
       },
       {
-        "read": "$",
-        "to_state": "find_A=%t",
-        "write": "$",
-        "action": "RIGHT"
-      }
-    ],
-    "find_cmd_from_A=": [
-      {
-        "read": "%*sABCwabcdi1lrt+=.#@",
-        "to_state": "find_cmd_from_A=",
-        "write": "[r]",
-        "action": "LEFT"
-      },
-      {
-        "read": "$",
-        "to_state": "find_A1%t",
-        "write": "$",
-        "action": "RIGHT"
+          "read": "1",
+          "to_state": "save_B1_get_B1%w_at_%i",
+          "write": "1",
+          "action": "RIGHT"
       }
     ]
   }
