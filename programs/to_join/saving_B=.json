@@ -1555,88 +1555,88 @@
             "action": "LEFT"
         }
     ],
-    "save_B=_%w=+_go_to_b": [
+    "save_B=_%w=+_go_to_%w": [
         {
             "read": "%",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "%",
             "action": "LEFT"
         },
         {
             "read": "$",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "$",
             "action": "LEFT"
         },
         {
             "read": "1",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "1",
             "action": "LEFT"
         },
         {
             "read": "A",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "A",
             "action": "LEFT"
         },
         {
             "read": "B",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "B",
             "action": "LEFT"
         },
         {
             "read": "a",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "a",
             "action": "LEFT"
         },
         {
             "read": "b",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "b",
             "action": "LEFT"
         },
         {
             "read": "c",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "c",
             "action": "LEFT"
         },
         {
             "read": "d",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "d",
             "action": "LEFT"
         },
         {
             "read": "i",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "i",
             "action": "LEFT"
         },
         {
             "read": "l",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "l",
             "action": "LEFT"
         },
         {
             "read": "r",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "r",
             "action": "LEFT"
         },
         {
             "read": "s",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "s",
             "action": "LEFT"
         },
         {
             "read": "t",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": "t",
             "action": "LEFT"
         },
@@ -1648,93 +1648,93 @@
         },
         {
             "read": ".",
-            "to_state": "save_B=_%w=+_go_to_b",
+            "to_state": "save_B=_%w=+_go_to_%w",
             "write": ".",
             "action": "LEFT"
         }
     ],
-    "save_B=_%w==_go_to_b": [
+    "save_B=_%w==_go_to_%w": [
         {
             "read": "%",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "%",
             "action": "LEFT"
         },
         {
             "read": "$",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "$",
             "action": "LEFT"
         },
         {
             "read": "1",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "1",
             "action": "LEFT"
         },
         {
             "read": "A",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "A",
             "action": "LEFT"
         },
         {
             "read": "B",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "B",
             "action": "LEFT"
         },
         {
             "read": "a",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "a",
             "action": "LEFT"
         },
         {
             "read": "b",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "b",
             "action": "LEFT"
         },
         {
             "read": "c",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "c",
             "action": "LEFT"
         },
         {
             "read": "d",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "d",
             "action": "LEFT"
         },
         {
             "read": "i",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "i",
             "action": "LEFT"
         },
         {
             "read": "l",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "l",
             "action": "LEFT"
         },
         {
             "read": "r",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "r",
             "action": "LEFT"
         },
         {
             "read": "s",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "s",
             "action": "LEFT"
         },
         {
             "read": "t",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": "t",
             "action": "LEFT"
         },
@@ -1746,93 +1746,93 @@
         },
         {
             "read": ".",
-            "to_state": "save_B=_%w==_go_to_b",
+            "to_state": "save_B=_%w==_go_to_%w",
             "write": ".",
             "action": "LEFT"
         }
     ],
-    "save_B=_%w=._go_to_b": [
+    "save_B=_%w=._go_to_%w": [
         {
             "read": "%",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "%",
             "action": "LEFT"
         },
         {
             "read": "$",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "$",
             "action": "LEFT"
         },
         {
             "read": "1",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "1",
             "action": "LEFT"
         },
         {
             "read": "A",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "A",
             "action": "LEFT"
         },
         {
             "read": "B",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "B",
             "action": "LEFT"
         },
         {
             "read": "a",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "a",
             "action": "LEFT"
         },
         {
             "read": "b",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "b",
             "action": "LEFT"
         },
         {
             "read": "c",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "c",
             "action": "LEFT"
         },
         {
             "read": "d",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "d",
             "action": "LEFT"
         },
         {
             "read": "i",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "i",
             "action": "LEFT"
         },
         {
             "read": "l",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "l",
             "action": "LEFT"
         },
         {
             "read": "r",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "r",
             "action": "LEFT"
         },
         {
             "read": "s",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "s",
             "action": "LEFT"
         },
         {
             "read": "t",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": "t",
             "action": "LEFT"
         },
@@ -1844,7 +1844,7 @@
         },
         {
             "read": ".",
-            "to_state": "save_B=_%w=._go_to_b",
+            "to_state": "save_B=_%w=._go_to_%w",
             "write": ".",
             "action": "LEFT"
         }
