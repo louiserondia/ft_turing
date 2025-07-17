@@ -39,10 +39,7 @@ let string_to_char s e = match String.length s with 1 -> s.[0] | _ -> raise e
 
 let check_instructions (instructions : instructions) =
   let in_alphabet c =
-    if CharSet.mem c instructions.alphabet then true
-    else (
-      Printf.printf "%c\n" c;
-      false)
+    if CharSet.mem c instructions.alphabet then true else false
   in
   let in_states s = StringSet.mem s instructions.states in
   if not (in_alphabet instructions.blank) then raise LogicError;
