@@ -1,19 +1,31 @@
 let () =
   let filename, input =
     let help () =
-      print_endline "usage...";
+      let usage =
+        "usage: ft_turing [-h] jsonfile input\n\
+         positional arguments:\n\
+         \tjsonfile: json description of the machine\n\
+         \tinput: input of the machine\n\
+         optional arguments:\n\
+         \t-h, --help: show this help message and exit"
+      in
+      print_endline usage;
       exit 0
     in
     match Array.sub Sys.argv 1 (Array.length Sys.argv - 1) |> Array.to_list with
     | [ filename; input ] -> (filename, input)
     | [ "-h" ] | [ "--help" ] -> help ()
     | l when List.mem "-h" l || List.mem "--help" l -> help ()
-    | _ -> failwith "wrong number of arguments"
+    | _ ->
+        Printf.eprintf "wrong number of arguments\n";
+        exit 1
   in
   let instructions =
     match Turing.Instructions.from_json_file filename with
     | Ok instructions -> instructions
-    | Error msg -> failwith msg
+    | Error msg ->
+        Printf.eprintf "%s\n" msg;
+        exit 1
   in
   let machine = Turing.Machine.init instructions input instructions.initial in
   Turing.Machine.print_info machine;

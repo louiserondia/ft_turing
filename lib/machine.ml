@@ -43,9 +43,19 @@ let print_info machine =
 
 let operation machine =
   let transitions =
-    StringMap.find machine.op machine.instructions.transitions
+    match StringMap.find_opt machine.op machine.instructions.transitions with
+    | Some v -> v
+    | None ->
+        Printf.eprintf "the machine is stuck\n";
+        exit 1
   in
-  let transition_rule = CharMap.find machine.tape.v transitions in
+  let transition_rule =
+    match CharMap.find_opt machine.tape.v transitions with
+    | Some v -> v
+    | None ->
+        Printf.eprintf "the machine is stuck\n";
+        exit 1
+  in
   (machine.tape |> Tape.to_string)
   ^ "\t"
   ^ transition_to_string machine.op machine.tape.v transition_rule
