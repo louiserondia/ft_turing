@@ -1,5 +1,5 @@
 ft_turing: install
-	opam exec dune build && cp _build/install/default/bin/turing ft_turing
+	opam exec dune build && cp -f _build/install/default/bin/turing ft_turing
 
 run-utm: ft_turing
 	./ft_turing programs/utm.json "$$(cat programs/utm_input.txt)"
